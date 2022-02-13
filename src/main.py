@@ -46,7 +46,7 @@ def greet_user():
         speak(f"Good afternoon {USERNAME}")
     elif (hour >= 16) and (hour < 19):
         speak(f"Good Evening {USERNAME}")
-    speak(f"I am {BOTNAME}. How may I assist you?")
+    speak(f"I am {BOTNAME}, Technically Advanced Linguistic Operating System. How may I assist you?")
 
 
 # Takes Input from User
@@ -60,7 +60,7 @@ def take_user_input():
         audio = r.listen(source)
 
     try:
-        print('Recognizing...')
+        print('Thinking...')
         query = r.recognize_google(audio, language='en-in')
         if not 'exit' in query or 'stop' in query:
             speak(choice(opening_text))
@@ -149,7 +149,7 @@ if __name__ == '__main__':
             pprint(joke)
 
         elif "advice" in query:
-            speak(f"Here's an advice for you, sir")
+            speak(f"Here's some advice for you, sir")
             advice = get_random_advice()
             speak(advice)
             speak("For your convenience, I am printing it on the screen sir.")
