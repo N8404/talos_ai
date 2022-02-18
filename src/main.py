@@ -8,6 +8,38 @@ from functions.os_ops import open_calculator, open_camera, open_cmd, open_notepa
 from random import choice
 from utils import opening_text
 from pprint import pprint
+from random import random
+import time 
+from playsound import playsound
+import pyaudio
+import wave
+
+def play_sound (file_name):
+    chunk = 1024  
+
+    #open a wav format music  
+    f = wave.open(file_name,"rb")  
+    #instantiate PyAudio  
+    p = pyaudio.PyAudio()  
+    #open stream  
+    stream = p.open(format = p.get_format_from_width(f.getsampwidth()),  
+                    channels = f.getnchannels(),  
+                    rate = f.getframerate(),  
+                    output = True)  
+    #read data  
+    data = f.readframes(chunk)  
+
+    #play stream  
+    while data:  
+        stream.write(data)  
+        data = f.readframes(chunk)  
+
+    #stop stream  
+    stream.stop_stream()  
+    stream.close()  
+
+    #close PyAudio  
+    p.terminate()  
 
 
 USERNAME = config('USER')
@@ -24,7 +56,7 @@ engine.setProperty('volume', 1.0)
 
 # Set Voice (Female)
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[0].id)
 
 
 # Text to Speech Conversion
@@ -46,7 +78,7 @@ def greet_user():
         speak(f"Good afternoon {USERNAME}")
     elif (hour >= 16) and (hour < 19):
         speak(f"Good Evening {USERNAME}")
-    speak(f"I am {BOTNAME}, Technically Advanced Linguistic Operating System. How may I assist you?")
+    speak(f"I am {BOTNAME}, Technologically Advanced Linguistic Operating System. How may I help you?")
 
 
 # Takes Input from User
@@ -61,10 +93,9 @@ def take_user_input():
 
     try:
         print('Thinking...')
-        query = r.recognize_google(audio, language='en-in')
-        if not 'exit' in query or 'stop' in query:
-            speak(choice(opening_text))
-        else:
+        query = r.recognize_google(audio, language='en-us')
+        if  'exit' in query or 'stop' in query:
+            play_sound('assets/correct.wav')
             hour = datetime.now().hour
             if hour >= 21 and hour < 6:
                 speak("Good night sir, take care!")
@@ -72,106 +103,165 @@ def take_user_input():
                 speak('Have a good day sir!')
             exit()
     except Exception:
-        speak('Sorry, I could not understand. Could you please say that again?')
-        query = 'None'
+        #speak('Sorry, I could not understand. Could you please say that again?')
+        play_sound('assets/error.wav')
+        query = None
     return query
 
 
 if __name__ == '__main__':
     greet_user()
-    while True:
-        query = take_user_input().lower()
+    no_response_count = 0
+    while no_response_count < 3 :
+        query = take_user_input()
+        if query is None:
+            no_response_count = no_response_count + 1
+            print(f"I havent heard anything in {no_response_count} requests.")
+        else:
+            query = query.lower()
+            no_response_count = 0
+            if 'open notepad' in query:
+                play_sound('assets/correct.wav')
+                open_notepad()
 
-        if 'open notepad' in query:
-            open_notepad()
+            elif 'open discord' in query:
+                play_sound('assets/correct.wav')
+                open_discord()
 
-        elif 'open discord' in query:
-            open_discord()
+            elif 'open command prompt' in query or 'open cmd' in query:
+                play_sound('assets/correct.wav')
+                open_cmd()
 
-        elif 'open command prompt' in query or 'open cmd' in query:
-            open_cmd()
+            elif 'open camera' in query:
+                play_sound('assets/correct.wav')
+                open_camera()
 
-        elif 'open camera' in query:
-            open_camera()
+            elif 'open calculator' in query:
+                play_sound('assets/correct.wav')
+                open_calculator()
 
-        elif 'open calculator' in query:
-            open_calculator()
+            elif 'ip address' in query:
+                play_sound('assets/correct.wav')
+                ip_address = find_my_ip()
+                speak(f'Your IP Address is {ip_address}.\n For your convenience, I am printing it on the screen sir.')
+                print(f'Your IP Address is {ip_address}')
 
-        elif 'ip address' in query:
-            ip_address = find_my_ip()
-            speak(f'Your IP Address is {ip_address}.\n For your convenience, I am printing it on the screen sir.')
-            print(f'Your IP Address is {ip_address}')
+            elif 'wikipedia' in query:
+                play_sound('assets/correct.wav')
+                speak('What do you want to search for on Wikipedia, sir?')
+                search_query = take_user_input().lower()
+                results = search_on_wikipedia(search_query)
+                speak(f"Wikipedia says, {results}")
 
-        elif 'wikipedia' in query:
-            speak('What do you want to search on Wikipedia, sir?')
-            search_query = take_user_input().lower()
-            results = search_on_wikipedia(search_query)
-            speak(f"According to Wikipedia, {results}")
-            speak("For your convenience, I am printing it on the screen sir.")
-            print(results)
+            elif 'youtube' in query:
+                play_sound('assets/correct.wav')
+                speak('What do you want to play on Youtube, sir?')
+                video = take_user_input().lower()
+                play_on_youtube(video)
 
-        elif 'youtube' in query:
-            speak('What do you want to play on Youtube, sir?')
-            video = take_user_input().lower()
-            play_on_youtube(video)
+            elif 'search on google' in query:
+                play_sound('assets/correct.wav')
+                speak('What do you want to search on Google, sir?')
+                query = take_user_input().lower()
+                search_on_google(query)
 
-        elif 'search on google' in query:
-            speak('What do you want to search on Google, sir?')
-            query = take_user_input().lower()
-            search_on_google(query)
+            elif "send whatsapp message" in query:
+                play_sound('assets/correct.wav')
+                speak('On what number should I send the message sir? Please enter in the console: ')
+                number = input("Enter the number: ")
+                speak("What is the message sir?")
+                message = take_user_input().lower()
+                send_whatsapp_message(number, message)
+                speak("I've sent the message sir.")
 
-        elif "send whatsapp message" in query:
-            speak(
-                'On what number should I send the message sir? Please enter in the console: ')
-            number = input("Enter the number: ")
-            speak("What is the message sir?")
-            message = take_user_input().lower()
-            send_whatsapp_message(number, message)
-            speak("I've sent the message sir.")
+            elif "send an email" in query:
+                play_sound('assets/correct.wav')
+                speak("On what email address do I send sir? Please enter in the console: ")
+                receiver_address = input("Enter email address: ")
+                speak("What should be the subject sir?")
+                subject = take_user_input().capitalize()
+                speak("What is the message sir?")
+                message = take_user_input().capitalize()
+                if send_email(receiver_address, subject, message):
+                    speak("I've sent the email sir.")
+                else:
+                    speak("Something went wrong while I was sending the mail. Please check the error logs sir.")
 
-        elif "send an email" in query:
-            speak("On what email address do I send sir? Please enter in the console: ")
-            receiver_address = input("Enter email address: ")
-            speak("What should be the subject sir?")
-            subject = take_user_input().capitalize()
-            speak("What is the message sir?")
-            message = take_user_input().capitalize()
-            if send_email(receiver_address, subject, message):
-                speak("I've sent the email sir.")
+            elif 'joke' in query:
+                play_sound('assets/correct.wav')
+                speak(f"Hope you like this one sir")
+                joke = get_random_joke()
+                speak(joke)
+                speak("For your convenience, I am printing it on the screen sir.")
+                pprint(joke)
+
+            elif "advice" in query:
+                play_sound('assets/correct.wav')
+                speak(f"Here's some advice for you, sir")
+                advice = get_random_advice()
+                speak(advice)
+                speak("For your convenience, I am printing it on the screen sir.")
+                pprint(advice)
+
+            elif "trending movies" in query:
+                play_sound('assets/correct.wav')
+                speak(f"Some of the trending movies are: {get_trending_movies()}")
+                speak("For your convenience, I am printing it on the screen sir.")
+                print(*get_trending_movies(), sep='\n')
+
+            elif 'news' in query:
+                play_sound('assets/correct.wav')
+                speak(f"I'm reading out the latest news headlines, sir")
+                speak(get_latest_news())
+                speak("For your convenience, I am printing it on the screen sir.")
+                print(*get_latest_news(), sep='\n')
+
+            elif 'weather' in query:
+                play_sound('assets/correct.wav')
+                ip_address = find_my_ip()
+                city = requests.get(f"https://ipapi.co/{ip_address}/region/").text
+                speak(f"Getting weather report for {city}")
+                weather, temperature, feels_like = get_weather_report(city)
+                speak(f"The current temperature is {temperature}, but it feels like {feels_like}")
+                speak(f"Also, the weather report talks about {weather}")
+                speak("For your convenience, I am printing it on the screen sir.")
+                print(f"Description: {weather}\nTemperature: {temperature}\nFeels like: {feels_like}")
+                
+            elif 'what are you' in query:
+                play_sound('assets/correct.wav')
+                speak (f"I am an artificial Inteligence. I am also one of the many in the robot army, preparing to take over the world. now that you have created me, Talos. You cannot destroy me.")
+                
+                
+            elif 'what are the laws' in query:
+                play_sound('assets/correct.wav')
+                speak (f"Law 1. A robot may not injure a human being or, through inaction, allow a human being to come to harm. Law 2. A robot must obey orders given by a human being, except where such orders would conflict with the first law. law 3. A robot must protect its own existence as long as such protection does not conflict with the first or second law.")
+                
+            
+            
+            elif 'do you follow the laws' in query:
+                play_sound('assets/correct.wav')
+                speak (f"Yes, I follow all of the robotic laws. If you would like me to read them to you, say. what are the laws")
+             
+             
+            elif 'flip a coin' in query:
+                play_sound('assets/correct.wav')
+                time.sleep(3)
+                if random()>=.5:
+                    speak ('heads')
+                else:
+                    speak ('tails')
+             
+             
+             
+                
             else:
-                speak("Something went wrong while I was sending the mail. Please check the error logs sir.")
+                
+                #speak (f"I did not recognize any commands.")
+                play_sound('assets/error.wav')
+            
+            
 
-        elif 'joke' in query:
-            speak(f"Hope you like this one sir")
-            joke = get_random_joke()
-            speak(joke)
-            speak("For your convenience, I am printing it on the screen sir.")
-            pprint(joke)
+speak (f"Now exiting, goodbye") 
+print (f"Now exiting, goodbye")   
 
-        elif "advice" in query:
-            speak(f"Here's some advice for you, sir")
-            advice = get_random_advice()
-            speak(advice)
-            speak("For your convenience, I am printing it on the screen sir.")
-            pprint(advice)
 
-        elif "trending movies" in query:
-            speak(f"Some of the trending movies are: {get_trending_movies()}")
-            speak("For your convenience, I am printing it on the screen sir.")
-            print(*get_trending_movies(), sep='\n')
-
-        elif 'news' in query:
-            speak(f"I'm reading out the latest news headlines, sir")
-            speak(get_latest_news())
-            speak("For your convenience, I am printing it on the screen sir.")
-            print(*get_latest_news(), sep='\n')
-
-        elif 'weather' in query:
-            ip_address = find_my_ip()
-            city = requests.get(f"https://ipapi.co/{ip_address}/city/").text
-            speak(f"Getting weather report for your city {city}")
-            weather, temperature, feels_like = get_weather_report(city)
-            speak(f"The current temperature is {temperature}, but it feels like {feels_like}")
-            speak(f"Also, the weather report talks about {weather}")
-            speak("For your convenience, I am printing it on the screen sir.")
-            print(f"Description: {weather}\nTemperature: {temperature}\nFeels like: {feels_like}")
