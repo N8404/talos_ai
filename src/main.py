@@ -110,7 +110,7 @@ def take_user_input():
 
 
 if __name__ == '__main__':
-    greet_user()
+    greet_user() 
     no_response_count = 0
     while no_response_count < 3 :
         query = take_user_input()
@@ -226,7 +226,7 @@ if __name__ == '__main__':
                 speak(f"Also, the weather report talks about {weather}")
                 speak("For your convenience, I am printing it on the screen sir.")
                 print(f"Description: {weather}\nTemperature: {temperature}\nFeels like: {feels_like}")
-                
+                                                                                                                  
             elif 'what are you' in query:
                 play_sound('assets/correct.wav')
                 speak (f"I am an artificial Inteligence. I am also one of the many in the robot army, preparing to take over the world. now that you have created me, Talos. You cannot destroy me.")
