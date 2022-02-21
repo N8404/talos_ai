@@ -158,7 +158,7 @@ if __name__ == '__main__':
                 results = search_on_wikipedia(search_query)
                 speak(f"Wikipedia says, {results}")
 
-            elif 'youtube' in query:
+            elif 'youtube' in query: 
                 play_sound('assets/correct.wav')
                 speak('What do you want to play on Youtube, sir?')
                 video = take_user_input().lower()
