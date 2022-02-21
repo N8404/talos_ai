@@ -14,6 +14,7 @@ from playsound import playsound
 import pyaudio
 import wave
 
+
 def play_sound (file_name):
     chunk = 1024  
 
@@ -78,7 +79,7 @@ def greet_user():
         speak(f"Good afternoon {USERNAME}")
     elif (hour >= 16) and (hour < 19):
         speak(f"Good Evening {USERNAME}")
-    speak(f"I am {BOTNAME}, Technologically Advanced Linguistic Operating System. How may I help you?")
+    speak(f"I am {BOTNAME}, How may I help you?")
 
 
 # Takes Input from User
@@ -124,10 +125,6 @@ if __name__ == '__main__':
                 play_sound('assets/correct.wav')
                 open_notepad()
 
-            elif 'open discord' in query:
-                play_sound('assets/correct.wav')
-                open_discord()
-
             elif 'open command prompt' in query or 'open cmd' in query:
                 play_sound('assets/correct.wav')
                 open_cmd()
@@ -145,6 +142,14 @@ if __name__ == '__main__':
                 ip_address = find_my_ip()
                 speak(f'Your IP Address is {ip_address}.\n For your convenience, I am printing it on the screen sir.')
                 print(f'Your IP Address is {ip_address}')
+
+            elif 'What time is it' in query:
+                datetime.now()
+                play_sound('assets/correct.wav')
+                print("Current date and time: ")
+                print(now.strftime('%Y-%m-%d %H:%M:%S'))
+                print(now.strftime('%H:%M:%S on %A, %B the %dth, %Y'))
+
 
             elif 'wikipedia' in query:
                 play_sound('assets/correct.wav')
@@ -165,14 +170,7 @@ if __name__ == '__main__':
                 query = take_user_input().lower()
                 search_on_google(query)
 
-            elif "send whatsapp message" in query:
-                play_sound('assets/correct.wav')
-                speak('On what number should I send the message sir? Please enter in the console: ')
-                number = input("Enter the number: ")
-                speak("What is the message sir?")
-                message = take_user_input().lower()
-                send_whatsapp_message(number, message)
-                speak("I've sent the message sir.")
+            
 
             elif "send an email" in query:
                 play_sound('assets/correct.wav')
