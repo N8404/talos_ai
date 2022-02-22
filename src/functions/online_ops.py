@@ -92,3 +92,15 @@ def get_random_joke():
 def get_random_advice():
     res = requests.get("https://api.adviceslip.com/advice").json()
     return res['slip']['advice']
+
+
+def get_word_meaning(word):
+    WORDS_API_KEY=config("WORDS_API_KEY")
+    try:
+        res = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={WORDS_API_KEY}").json()          
+        shortdef = res[0]['shortdef'][0]            
+        message = f'The definition of {word} is:  {shortdef}'
+    except Exception:
+        message=(f'Sorry, I could not find the definition of {word}')
+    
+    return message

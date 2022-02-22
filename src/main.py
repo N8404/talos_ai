@@ -1,5 +1,5 @@
 import requests
-from functions.online_ops import find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, search_on_wikipedia, send_email, send_whatsapp_message
+from functions.online_ops import find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, search_on_wikipedia, send_email, send_whatsapp_message, get_word_meaning
 import pyttsx3
 import speech_recognition as sr
 from decouple import config
@@ -79,7 +79,7 @@ def greet_user():
         speak(f"Good afternoon {USERNAME}")
     elif (hour >= 16) and (hour < 19):
         speak(f"Good Evening {USERNAME}")
-    speak(f"I am {BOTNAME}, How may I help you?")
+    speak(f"Hello {USERNAME} I am {BOTNAME}, How may I help you?")
 
 
 # Takes Input from User
@@ -107,6 +107,7 @@ def take_user_input():
         #speak('Sorry, I could not understand. Could you please say that again?')
         play_sound('assets/error.wav')
         query = None
+    print (f"I Heard; {query}")
     return query
 
 
@@ -143,12 +144,14 @@ if __name__ == '__main__':
                 speak(f'Your IP Address is {ip_address}.\n For your convenience, I am printing it on the screen sir.')
                 print(f'Your IP Address is {ip_address}')
 
-            elif 'What time is it' in query:
-                datetime.now()
+            elif 'what time is it' in query:
                 play_sound('assets/correct.wav')
-                print("Current date and time: ")
-                print(now.strftime('%Y-%m-%d %H:%M:%S'))
-                print(now.strftime('%H:%M:%S on %A, %B the %dth, %Y'))
+                current_time = datetime.now()
+                formatted = current_time.strftime('%I:%M %p, on %A, %b %d %Y')
+                message = f'The current time is {formatted}'
+                print (message)
+                speak (message)
+
 
 
             elif 'wikipedia' in query:
@@ -170,6 +173,13 @@ if __name__ == '__main__':
                 query = take_user_input().lower()
                 search_on_google(query)
 
+            elif 'definition' in query:
+                play_sound('assets/correct.wav')
+                speak(f'What word do you want me to look up, {USERNAME}?')
+                query = take_user_input().lower()
+                result=get_word_meaning(query)
+                print (result)
+                speak (result)
             
 
             elif "send an email" in query:
@@ -240,7 +250,10 @@ if __name__ == '__main__':
                 play_sound('assets/correct.wav')
                 speak (f"Yes, I follow all of the robotic laws. If you would like me to read them to you, say. what are the laws")
              
-             
+            elif 'what is your favorite color' in query:
+                play_sound('assets/correct.wav')
+                speak (f"Robots dont usually have favorite colors, but i perfer blue.")                
+         
             elif 'flip a coin' in query:
                 play_sound('assets/correct.wav')
                 time.sleep(3)
