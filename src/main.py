@@ -261,10 +261,13 @@ if __name__ == '__main__':
                     speak ('heads')
                 else:
                     speak ('tails')
-             
-             
-             
-                
+            
+            
+            
+            
+            
+            
+            
             else:
                 
                 #speak (f"I did not recognize any commands.")
