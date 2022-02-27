@@ -1,5 +1,5 @@
 import requests
-from functions.online_ops import get_word_synonym,find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, search_on_wikipedia, send_email, send_whatsapp_message, get_word_meaning
+from functions.online_ops import get_word_synonym,find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, send_email, get_word_meaning
 from decouple import config
 from datetime import datetime
 from functions.os_ops import open_calculator, open_camera, open_cmd, open_notepad, open_discord
@@ -11,6 +11,8 @@ import time
 from playsound import playsound
 from speaker import speak,play_sound
 from listener import take_user_input
+from intents import wikipediaintent
+
 
 USER=config("USER")
 
@@ -51,11 +53,8 @@ def start_dispatch(query):
             speak (message)
 
         elif 'wikipedia' in query:
-            play_sound('assets/correct.wav')
-            speak('What do you want to search for on Wikipedia, sir?')
-            search_query = take_user_input().lower()
-            results = search_on_wikipedia(search_query)
-            speak(f"Wikipedia says, {results}")
+            wikipediaintent.handle_intent(query)
+            
 
         elif 'youtube' in query: 
             play_sound('assets/correct.wav')
