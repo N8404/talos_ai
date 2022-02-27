@@ -1,5 +1,5 @@
 import requests
-from functions.online_ops import get_word_synonym,find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, send_email, get_word_meaning
+from functions.online_ops import find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, send_email
 from decouple import config
 from datetime import datetime
 from functions.os_ops import open_calculator, open_camera, open_cmd, open_notepad, open_discord
@@ -11,7 +11,7 @@ import time
 from playsound import playsound
 from speaker import speak,play_sound
 from listener import take_user_input
-from intents import wikipediaintent
+from intents import synonymintent, wikipediaintent, wordlookupintent
 
 
 USER=config("USER")
@@ -69,12 +69,13 @@ def start_dispatch(query):
             search_on_google(query)
 
         elif 'definition' in query:
-            play_sound('assets/correct.wav')
-            speak(f'What word do you want me to look up, sir?')
-            query = take_user_input().lower()
-            result=get_word_meaning(query)
-            print (result)
-            speak (result)
+            wordlookupintent.handle_intent(query)
+            # play_sound('assets/correct.wav')
+            # speak(f'What word do you want me to look up, sir?')
+            # query = take_user_input().lower()
+            # result=get_word_meaning(query)
+            # print (result)
+            # speak (result)
         
         elif "send an email" in query:
             play_sound('assets/correct.wav')
@@ -153,13 +154,8 @@ def start_dispatch(query):
             else:
                 speak ('tails')
         
-        elif 'synonym' in query:
-            play_sound('assets/correct.wav')
-            speak(f'What word do you want me to find the synonym for,{USER}')
-            query = take_user_input().lower()
-            result=get_word_synonym(query)
-            print (result)
-            speak (result)
+        elif 'synonym' in query or "thesaurus" in query:
+            synonymintent.handle_intent(query)
             
             
         else:

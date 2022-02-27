@@ -90,30 +90,3 @@ def get_random_joke():
 def get_random_advice():
     res = requests.get("https://api.adviceslip.com/advice").json()
     return res['slip']['advice']
-
-
-def get_word_meaning(word):
-    WORDS_API_KEY=config("WORDS_API_KEY")
-    try:
-        res = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={WORDS_API_KEY}").json()          
-        shortdef = res[0]['shortdef'][0]            
-        message = f'The definition of {word} is:  {shortdef}'
-    except Exception:
-        message=(f'Sorry, I could not find the definition of {word}')
-    
-    return message
-
-
-def get_word_synonym(word):
-    THESAURUS_API_KEY=config("THESAURUS_API_KEY")
-    message=""
-    try:
-        #https://www.dictionaryapi.com/api/v3/references/thesaurus/json/umpire?key=your-api-key
-        res = requests.get(f"https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={THESAURUS_API_KEY}").json()   
-        #print (json.dumps(res))       
-        top_five = res[0]['meta']['syns'][0]            
-        message = f'The synonyms of {word} are:  {top_five}'
-    except Exception:
-        message=(f'Sorry, I could not find the synonyms for {word}')
-    finally:
-        return message
