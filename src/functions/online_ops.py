@@ -1,3 +1,4 @@
+import json
 import requests
 import wikipedia
 import pywhatkit as kit
@@ -8,8 +9,8 @@ from decouple import config
 NEWS_API_KEY = config("NEWS_API_KEY")
 OPENWEATHER_APP_ID = config("OPENWEATHER_APP_ID")
 TMDB_API_KEY = config("TMDB_API_KEY")
-EMAIL = config("EMAIL")
-PASSWORD = config("PASSWORD")
+EMAIL_ACCOUNT = config("EMAIL_ACCOUNT")
+EMAIL_PASSWORD = config("EMAIL_PASSWORD")
 
 
 def find_my_ip():
@@ -35,15 +36,17 @@ def send_whatsapp_message(number, message):
 
 
 def send_email(receiver_address, subject, message):
+    print (EMAIL_ACCOUNT)
+    print (EMAIL_PASSWORD)
     try:
         email = EmailMessage()
         email['To'] = receiver_address
         email["Subject"] = subject
-        email['From'] = EMAIL
+        email['From'] = EMAIL_ACCOUNT
         email.set_content(message)
         s = smtplib.SMTP("smtp.gmail.com", 587)
         s.starttls()
-        s.login(EMAIL, PASSWORD)
+        s.login(EMAIL_ACCOUNT, EMAIL_PASSWORD)
         s.send_message(email)
         s.close()
         return True
@@ -104,3 +107,18 @@ def get_word_meaning(word):
         message=(f'Sorry, I could not find the definition of {word}')
     
     return message
+
+
+def get_word_synonym(word):
+    THESAURUS_API_KEY=config("THESAURUS_API_KEY")
+    message=""
+    try:
+        #https://www.dictionaryapi.com/api/v3/references/thesaurus/json/umpire?key=your-api-key
+        res = requests.get(f"https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={THESAURUS_API_KEY}").json()   
+        #print (json.dumps(res))       
+        top_five = res[0]['meta']['syns'][0]            
+        message = f'The synonyms of {word} are:  {top_five}'
+    except Exception:
+        message=(f'Sorry, I could not find the synonyms for {word}')
+    finally:
+        return message

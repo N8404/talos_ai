@@ -1,5 +1,5 @@
 import requests
-from functions.online_ops import find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, search_on_wikipedia, send_email, send_whatsapp_message, get_word_meaning
+from functions.online_ops import get_word_synonym,find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, search_on_wikipedia, send_email, send_whatsapp_message, get_word_meaning
 from decouple import config
 from datetime import datetime
 from functions.os_ops import open_calculator, open_camera, open_cmd, open_notepad, open_discord
@@ -11,6 +11,8 @@ import time
 from playsound import playsound
 from speaker import speak,play_sound
 from listener import take_user_input
+
+USER=config("USER")
 
 
 def start_dispatch(query):
@@ -152,6 +154,15 @@ def start_dispatch(query):
             else:
                 speak ('tails')
         
+        elif 'synonym' in query:
+            play_sound('assets/correct.wav')
+            speak(f'What word do you want me to find the synonym for,{USER}')
+            query = take_user_input().lower()
+            result=get_word_synonym(query)
+            print (result)
+            speak (result)
+            
+            
         else:
             
             #speak (f"I did not recognize any commands.")
