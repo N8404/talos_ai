@@ -44,12 +44,12 @@ def get_trending_movies():
     return trending_movies[:5]
 
 
-def get_random_joke():
-    headers = {
-        'Accept': 'application/json'
-    }
-    res = requests.get("https://icanhazdadjoke.com/", headers=headers).json()
-    return res["joke"]
+# def get_random_joke():
+#     headers = {
+#         'Accept': 'application/json'
+#     }
+#     res = requests.get("https://icanhazdadjoke.com/", headers=headers).json()
+#     return res["joke"]
 
 
 def get_random_advice():
