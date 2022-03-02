@@ -33,12 +33,3 @@ def get_weather_report(city):
     feels_like = res["main"]["feels_like"]
     return weather, f"{temperature}°F", f"{feels_like}°F" # alt and 0176 on right keypad = degree symbol
 
-
-def get_trending_movies():
-    trending_movies = []
-    res = requests.get(
-        f"https://api.themoviedb.org/3/trending/movie/day?api_key={TMDB_API_KEY}").json()
-    results = res["results"]
-    for r in results:
-        trending_movies.append(r["original_title"])
-    return trending_movies[:5]

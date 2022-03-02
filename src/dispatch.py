@@ -1,5 +1,5 @@
 import requests
-from functions.online_ops import  get_latest_news, get_trending_movies, get_weather_report
+from functions.online_ops import  get_latest_news, get_weather_report
 from decouple import config
 from datetime import datetime
 from random import choice
@@ -10,8 +10,11 @@ import time
 from playsound import playsound
 from speaker import speak,play_sound
 from listener import take_user_input
-from intents import adviceintent, googleintent, jokeintent, myipintent, synonymintent, whattimeintent, wikipediaintent, wordlookupintent, youtubeintent, emailintent
-
+from intents import adviceintent, googleintent, jokeintent, myipintent, \
+                    synonymintent, whattimeintent, wikipediaintent,\
+                    wordlookupintent, youtubeintent, emailintent,\
+                    movieintent
+from intents.myipintent import find_my_ip
 
 USER=config("USER")
 
@@ -54,10 +57,8 @@ def start_dispatch(query):
             
 
         elif "trending movies" in query:
-            play_sound('assets/correct.wav')
-            speak(f"Some of the trending movies are: {get_trending_movies()}")
-            speak("For your convenience, I am printing it on the screen sir.")
-            print(*get_trending_movies(), sep='\n')
+            movieintent.handle_intent()
+            
 
         elif 'news' in query:
             play_sound('assets/correct.wav')
@@ -74,8 +75,7 @@ def start_dispatch(query):
             weather, temperature, feels_like = get_weather_report(city)
             speak(f"The current temperature is {temperature}, but it feels like {feels_like}")
             speak(f"Also, the weather report talks about {weather}")
-            speak("For your convenience, I am printing it on the screen sir.")
-            print(f"Description: {weather}\nTemperature: {temperature}\nFeels like: {feels_like}")
+            
                                                                                                                 
         elif 'what are you' in query:
             play_sound('assets/correct.wav')
