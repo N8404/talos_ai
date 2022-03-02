@@ -1,0 +1,653 @@
+[
+    {
+        "meta": {
+            "id": "computer",
+            "uuid": "3ef41789-caaf-4cf5-9f05-2edc11033292",
+            "sort": "035499900",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "computer",
+                "computerdom",
+                "computerdoms",
+                "computerless",
+                "computerlike",
+                "computers"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "com*put*er",
+            "prs": [
+                {
+                    "mw": "kəm-'pyü-tər",
+                    "sound": {
+                        "audio": "comput06",
+                        "ref": "c",
+                        "stat": "1"
+                    }
+                }
+            ]
+        },
+        "fl": "noun",
+        "lbs": [
+            "often attributive"
+        ],
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}one that {a_link|computes}"
+                                    ]
+                                ],
+                                "sdsense": {
+                                    "sd": "specifically",
+                                    "dt": [
+                                        [
+                                            "text",
+                                            "{bc}a programmable usually electronic device that can store, retrieve, and process data "
+                                        ],
+                                        [
+                                            "vis",
+                                            [
+                                                {
+                                                    "t": "using a {wi}computer{/wi} to design 3-D models"
+                                                }
+                                            ]
+                                        ]
+                                    ]
+                                }
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "uros": [
+            {
+                "ure": "com*put*er*dom",
+                "prs": [
+                    {
+                        "mw": "kəm-'pyü-tər-dəm",
+                        "sound": {
+                            "audio": "comput07",
+                            "ref": "c",
+                            "stat": "1"
+                        }
+                    }
+                ],
+                "fl": "noun"
+            },
+            {
+                "ure": "com*put*er*less",
+                "prs": [
+                    {
+                        "mw": "kəm-'pyü-tər-ləs",
+                        "sound": {
+                            "audio": "comput08",
+                            "ref": "c",
+                            "stat": "1"
+                        }
+                    }
+                ],
+                "fl": "adjective"
+            },
+            {
+                "ure": "com*put*er*like",
+                "prs": [
+                    {
+                        "mw": "kəm-'pyü-tər-ˌlīk",
+                        "sound": {
+                            "audio": "comput09",
+                            "ref": "c",
+                            "stat": "1"
+                        }
+                    }
+                ],
+                "fl": "adjective"
+            }
+        ],
+        "et": [
+            [
+                "text",
+                "{dx_ety}see {dxt|compute||}{/dx_ety}"
+            ]
+        ],
+        "date": "1613",
+        "shortdef": [
+            "one that computes; specifically : a programmable usually electronic device that can store, retrieve, and process data"
+        ]
+    },
+    {
+        "meta": {
+            "id": "computer science",
+            "uuid": "2447c9ee-61c5-464f-acae-f1f8d6a6a36b",
+            "sort": "035500600",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "computer science"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "computer science"
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a branch of science that deals with the theory of computation or the design of computers"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1961",
+        "shortdef": [
+            "a branch of science that deals with the theory of computation or the design of computers"
+        ]
+    },
+    {
+        "meta": {
+            "id": "analog computer",
+            "uuid": "c56831ab-1968-478d-82e8-9f7e2fb6669b",
+            "sort": "012570000",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "analog computer",
+                "analog computers"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "analog computer"
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a computer that operates with numbers represented by directly measurable quantities (such as voltages or rotations) {dx}compare {dxt|digital computer||},{dxt|hybrid computer||}{/dx}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1948",
+        "shortdef": [
+            "a computer that operates with numbers represented by directly measurable quantities (such as voltages or rotations)"
+        ]
+    },
+    {
+        "meta": {
+            "id": "digital computer",
+            "uuid": "03dc4e85-66a3-4336-93a3-3ca6aaf0a8ea",
+            "sort": "042085000",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "digital computer",
+                "digital computers"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "digital computer"
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a computer that operates with numbers expressed directly as digits {dx}compare {dxt|analog computer||},{dxt|hybrid computer||}{/dx}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1946",
+        "shortdef": [
+            "a computer that operates with numbers expressed directly as digits"
+        ]
+    },
+    {
+        "meta": {
+            "id": "home computer",
+            "uuid": "8331d49f-6163-4876-ba62-6da4d9955acc",
+            "sort": "080232400",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "home computer",
+                "home computers"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "home computer"
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a personal computer used in the home"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1955",
+        "shortdef": [
+            "a personal computer used in the home"
+        ]
+    },
+    {
+        "meta": {
+            "id": "hybrid computer",
+            "uuid": "d6246bdb-4518-4769-9f4e-7906b15649a2",
+            "sort": "080318400",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "hybrid computer",
+                "hybrid computers"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "hybrid computer"
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a computer system consisting of a combination of analog and digital computer systems"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1968",
+        "shortdef": [
+            "a computer system consisting of a combination of analog and digital computer systems"
+        ]
+    },
+    {
+        "meta": {
+            "id": "personal computer",
+            "uuid": "88716824-4ce2-49ab-9848-efb836f38d11",
+            "sort": "160205700",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "personal computer",
+                "personal computers"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "personal computer"
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a general-purpose computer equipped with a microprocessor and designed to run especially commercial software (such as a word processor or Internet browser) for an individual user"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1959",
+        "shortdef": [
+            "a general-purpose computer equipped with a microprocessor and designed to run especially commercial software (such as a word processor or Internet browser) for an individual user"
+        ]
+    },
+    {
+        "meta": {
+            "id": "quantum computer",
+            "uuid": "d41275ef-3543-4df1-876d-c46af4884c27",
+            "sort": "170014850",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "quantum computer",
+                "quantum computers",
+                "quantum computing"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "quantum computer"
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a computer that takes advantage of the quantum properties of {d_link|qubits|qubit} to perform certain types of calculation extremely quickly compared to conventional computers"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "uros": [
+            {
+                "ure": "quantum computing",
+                "fl": "noun",
+                "utxt": [
+                    [
+                        "vis",
+                        [
+                            {
+                                "t": "A \"geek at heart,\" Samet,34, is fascinated by {wi}quantum computing{/wi}, a still-emerging field that involves the behavior of subatomic particles in computing.",
+                                "aq": {
+                                    "auth": "Karen Breslau"
+                                }
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1982",
+        "shortdef": [
+            "a computer that takes advantage of the quantum properties of qubits to perform certain types of calculation extremely quickly compared to conventional computers"
+        ]
+    },
+    {
+        "meta": {
+            "id": "precomputer",
+            "uuid": "2670eaad-b6da-417d-99a2-d4f173959ccf",
+            "sort": "166749000",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "pre-computer",
+                "precomputer"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "pre*com*put*er",
+            "prs": [
+                {
+                    "mw": "ˌprē-kəm-'pyü-tər",
+                    "sound": {
+                        "audio": "precomputer_1",
+                        "ref": "owl",
+                        "stat": "1"
+                    }
+                }
+            ]
+        },
+        "vrs": [
+            {
+                "vl": "or",
+                "va": "pre-computer"
+            }
+        ],
+        "fl": "adjective",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}used or existing before {d_link|computers|computer} "
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "{wi        }precomputer{/wi        } record keeping"
+                                            },
+                                            {
+                                                "t": "the {wi        }precomputer{/wi        } era"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "date": "1959",
+        "shortdef": [
+            "used or existing before computers"
+        ]
+    },
+    {
+        "meta": {
+            "id": "tablet",
+            "uuid": "5e6eeba1-97e4-4f4b-a5ac-df191d0ae37c",
+            "sort": "200004100",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": [
+                "tablet",
+                "tablet computer",
+                "tablet computers",
+                "tablets"
+            ],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "tab*let",
+            "prs": [
+                {
+                    "mw": "'ta-blət",
+                    "sound": {
+                        "audio": "tablet01",
+                        "ref": "c",
+                        "stat": "1"
+                    }
+                }
+            ]
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1 a",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a flat slab or plaque suited for or bearing an inscription"
+                                    ]
+                                ]
+                            }
+                        ],
+                        [
+                            "sense",
+                            {
+                                "sn": "b",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a thin slab or one of a set of portable sheets used for writing"
+                                    ]
+                                ]
+                            }
+                        ],
+                        [
+                            "sense",
+                            {
+                                "sn": "c",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}{sx|pad: 1||2}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "2 a",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a small mass of medicated material "
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "an aspirin {wi        }tablet{/wi        }"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ],
+                        [
+                            "sense",
+                            {
+                                "sn": "b",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a compressed or molded block of a solid material"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "3 a",
+                                "vrs": [
+                                    {
+                                        "vl": "or",
+                                        "va": "tablet computer"
+                                    }
+                                ],
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a mobile computing device that has a flat, rectangular form like that of a magazine or pad of paper, that is usually controlled by means of a touch screen, and that is typically used for accessing the Internet, watching videos, playing games, reading electronic books, etc."
+                                    ]
+                                ]
+                            }
+                        ],
+                        [
+                            "sense",
+                            {
+                                "sn": "b",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}{sx|graphics tablet||}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "et": [
+            [
+                "text",
+                "Middle English {it}tablett{/it}, from Anglo-French {it}tablet{/it}, diminutive of {it}table{/it} table"
+            ]
+        ],
+        "date": "14th century{ds||1|a|}",
+        "shortdef": [
+            "a flat slab or plaque suited for or bearing an inscription",
+            "a thin slab or one of a set of portable sheets used for writing",
+            "pad"
+        ]
+    }
+]
