@@ -1,5 +1,4 @@
 import requests
-from functions.online_ops import get_weather_report
 from decouple import config
 from datetime import datetime
 from random import choice
@@ -13,7 +12,7 @@ from listener import take_user_input
 from intents import adviceintent, googleintent, jokeintent, myipintent, \
                     synonymintent, whattimeintent, wikipediaintent,\
                     wordlookupintent, youtubeintent, emailintent,\
-                    movieintent, newsintent
+                    movieintent, newsintent, weatherintent
 from intents.myipintent import find_my_ip
 
 USER=config("USER")
@@ -65,13 +64,14 @@ def start_dispatch(query):
           
 
         elif 'weather' in query:
-            play_sound('assets/correct.wav')
-            ip_address = find_my_ip()
-            city = requests.get(f"https://ipapi.co/{ip_address}/region/").text
-            speak(f"Getting weather report for {city}")
-            weather, temperature, feels_like = get_weather_report(city)
-            speak(f"The current temperature is {temperature}, but it feels like {feels_like}")
-            speak(f"Also, the weather report talks about {weather}")
+            weatherintent.handle_intent()
+            # play_sound('assets/correct.wav')
+            # ip_address = find_my_ip()
+            # city = requests.get(f"https://ipapi.co/{ip_address}/region/").text
+            # speak(f"Getting weather report for {city}")
+            # weather, temperature, feels_like = get_weather_report(city)
+            # speak(f"The current temperature is {temperature}, but it feels like {feels_like}")
+            # speak(f"Also, the weather report talks about {weather}")
             
                                                                                                                 
         elif 'what are you' in query:
@@ -88,7 +88,11 @@ def start_dispatch(query):
             
         elif 'what is your favorite color' in query:
             play_sound('assets/correct.wav')
-            speak (f"Robots dont usually have favorite colors, but i perfer blue.")                
+            speak (f"Robots dont usually have favorite colors, but i perfer blue.")    
+            
+        elif 'meaning of life' in query:
+            play_sound('assets/correct.wav')
+            speak (f"42, the awnser is 42.")            
         
         elif 'flip a coin' in query:
             play_sound('assets/correct.wav')
