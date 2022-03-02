@@ -7,3 +7,6 @@ def handle_intent():
     speak('What do you want to search on Google, sir?')
     query = take_user_input().lower()
     kit.search(query)
+    
+if __name__ == "__main__":
+    handle_intent()

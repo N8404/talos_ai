@@ -7,3 +7,7 @@ def handle_intent():
     speak('What do you want to play on Youtube, sir?')
     video = take_user_input().lower()
     kit.playonyt(video)
+    
+    
+if __name__ == "__main__":
+    handle_intent ()

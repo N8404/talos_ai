@@ -1,27 +1,18 @@
 import logging
-from decouple import config
-from datetime import datetime
-from utils import opening_text
-from random import random 
 import random
+from datetime import datetime
+from random import random
+from decouple import config
 import dispatch
-from speaker import speak,play_sound
 from listener import take_user_input
+from speaker import play_sound, speak
 
 USERNAME = config('USER')
 BOTNAME = config('BOTNAME')
 
 def greet_user():
     """Greets the user according to the time"""
-    
-    # hour = datetime.now().hour
-    # if (hour >= 6) and (hour < 12):
-    #     speak(f"Good Morning {USERNAME}")
-    # elif (hour >= 12) and (hour < 16):
-    #     speak(f"Good afternoon {USERNAME}")
-    # elif (hour >= 16) and (hour < 19):
-    #     speak(f"Good Evening {USERNAME}")
-    speak(f"Hello {USERNAME}, this is {BOTNAME}, How can I help?")
+    speak(f"Hello {USERNAME}, {BOTNAME} here.")
 
 def get_user_name():
     user=config("USER")
@@ -37,7 +28,7 @@ def main():
         query = take_user_input()
         if query is None:
             no_response_count = no_response_count + 1
-            print(f"I havent heard anything in {no_response_count} requests.")
+            print(f"T.A.L.O.S.> I havent heard anything in {no_response_count} requests.")
         else:
             query = query.lower()
             no_response_count = 0
@@ -51,4 +42,4 @@ if __name__ == '__main__':
     
         main()
     except KeyboardInterrupt:
-        print ("Now Exiting, Goodbye!")
+        print ("T.A.L.O.S.> Now Exiting, Goodbye!")

@@ -2,7 +2,6 @@ import requests
 from decouple import config
 from datetime import datetime
 from random import choice
-from utils import opening_text
 from pprint import pprint
 from random import random
 import time 
