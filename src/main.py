@@ -14,14 +14,14 @@ BOTNAME = config('BOTNAME')
 def greet_user():
     """Greets the user according to the time"""
     
-    hour = datetime.now().hour
-    if (hour >= 6) and (hour < 12):
-        speak(f"Good Morning {USERNAME}")
-    elif (hour >= 12) and (hour < 16):
-        speak(f"Good afternoon {USERNAME}")
-    elif (hour >= 16) and (hour < 19):
-        speak(f"Good Evening {USERNAME}")
-    speak(f"Hello {USERNAME} I am {BOTNAME}, How may I help you?")
+    # hour = datetime.now().hour
+    # if (hour >= 6) and (hour < 12):
+    #     speak(f"Good Morning {USERNAME}")
+    # elif (hour >= 12) and (hour < 16):
+    #     speak(f"Good afternoon {USERNAME}")
+    # elif (hour >= 16) and (hour < 19):
+    #     speak(f"Good Evening {USERNAME}")
+    speak(f"Hello {USERNAME}, this is {BOTNAME}, How can I help?")
 
 def get_user_name():
     user=config("USER")

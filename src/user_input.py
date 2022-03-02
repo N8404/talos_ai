@@ -1,6 +1,8 @@
 import speech_recognition as sr
 from random import choice
+from speaker import speak
 from utils import opening_text
+import datetime
 
 
 def take_user_input():
@@ -25,6 +27,6 @@ def take_user_input():
                 speak('Have a good day sir!')
             exit()
     except Exception:
-        speak('Sorry, I could not understand. Could you please say that again?')
+        #speak('Sorry, I could not understand. Could you please say that again?')
         query = 'None'
     return query

@@ -1,8 +1,7 @@
 import requests
-from functions.online_ops import find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, send_email
+from functions.online_ops import  get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report
 from decouple import config
 from datetime import datetime
-from functions.os_ops import open_calculator, open_camera, open_cmd, open_notepad, open_discord
 from random import choice
 from utils import opening_text
 from pprint import pprint
@@ -11,7 +10,7 @@ import time
 from playsound import playsound
 from speaker import speak,play_sound
 from listener import take_user_input
-from intents import synonymintent, wikipediaintent, wordlookupintent
+from intents import googleintent, myipintent, synonymintent, whattimeintent, wikipediaintent, wordlookupintent, youtubeintent, emailintent
 
 
 USER=config("USER")
@@ -22,73 +21,29 @@ def start_dispatch(query):
         print(f"I havent heard anything.")
     else:
         query = query.lower()
-        if 'open notepad' in query:
-            play_sound('assets/correct.wav')
-            open_notepad()
+        
+        if 'ip address' in query:
+            myipintent.handle_intent()            
 
-        elif 'open command prompt' in query or 'open cmd' in query:
-            play_sound('assets/correct.wav')
-            open_cmd()
-
-        elif 'open camera' in query:
-            play_sound('assets/correct.wav')
-            open_camera()
-
-        elif 'open calculator' in query:
-            play_sound('assets/correct.wav')
-            open_calculator()
-
-        elif 'ip address' in query:
-            play_sound('assets/correct.wav')
-            ip_address = find_my_ip()
-            speak(f'Your IP Address is {ip_address}.\n For your convenience, I am printing it on the screen sir.')
-            print(f'Your IP Address is {ip_address}')
-
-        elif 'what time is it' in query:
-            play_sound('assets/correct.wav')
-            current_time = datetime.now()
-            formatted = current_time.strftime('%I:%M %p, on %A, %b %d %Y')
-            message = f'The current time is {formatted}'
-            print (message)
-            speak (message)
-
+        elif 'time' in query:
+            whattimeintent.handle_intent()
+            
         elif 'wikipedia' in query:
             wikipediaintent.handle_intent(query)
             
+        elif 'youtube' in query:
+            youtubeintent.handle_intent()
 
-        elif 'youtube' in query: 
-            play_sound('assets/correct.wav')
-            speak('What do you want to play on Youtube, sir?')
-            video = take_user_input().lower()
-            play_on_youtube(video)
-
-        elif 'search on google' in query:
-            play_sound('assets/correct.wav')
-            speak('What do you want to search on Google, sir?')
-            query = take_user_input().lower()
-            search_on_google(query)
-
+        elif 'search on google'in query or 'google' in query:
+            googleintent.handle_intent()
+            
         elif 'definition' in query:
             wordlookupintent.handle_intent(query)
-            # play_sound('assets/correct.wav')
-            # speak(f'What word do you want me to look up, sir?')
-            # query = take_user_input().lower()
-            # result=get_word_meaning(query)
-            # print (result)
-            # speak (result)
         
-        elif "send an email" in query:
-            play_sound('assets/correct.wav')
-            speak("On what email address do I send sir? Please enter in the console: ")
-            receiver_address = input("Enter email address: ")
-            speak("What should be the subject sir?")
-            subject = take_user_input().capitalize()
-            speak("What is the message sir?")
-            message = take_user_input().capitalize()
-            if send_email(receiver_address, subject, message):
-                speak("I've sent the email sir.")
-            else:
-                speak("Something went wrong while I was sending the mail. Please check the error logs sir.")
+        
+        elif "email" in query:
+            emailintent.handle_intent()
+            
 
         elif 'joke' in query:
             play_sound('assets/correct.wav')
@@ -158,10 +113,13 @@ def start_dispatch(query):
             synonymintent.handle_intent(query)
             
             
+        elif 'what can you do' in query:
+            speak (f"Some commands you can ask me are, synonym, flip a coin, wikipedia, youtube, google, what is your favorite color, what are you, weather, news, trending movies, send an email, advice, joke, definition, what time is it , ip adress,  calculator, camera, cmd. hope this was helpfull.")
+            
         else:
             
-            #speak (f"I did not recognize any commands.")
-            play_sound('assets/error.wav')
+            print (f"I did not recognize any commands.")
+            #play_sound('assets/error.wav')
         
 def main():
     print ("No Default Functionality-Import From An Existing script.")

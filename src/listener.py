@@ -23,7 +23,7 @@ def take_user_input():
                 speak('T.A.L.O.S.> Have a good day sir!')
             exit()
     except Exception:
-        #speak('Sorry, I could not understand. Could you please say that again?')
+        print('T.A.L.O.S.> Sorry, I could not understand.')
         play_sound('assets/error.wav')
         query = None
     print (f"T.A.L.O.S.> I heard: {query}")

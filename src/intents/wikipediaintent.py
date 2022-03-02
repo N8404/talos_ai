@@ -13,7 +13,7 @@ def search_on_wikipedia(query:str):
     Returns:
         str: Returns the first five sentences of the wikipedia result page.
     """
-    results = wikipedia.summary(query, sentences=5)
+    results = wikipedia.summary(query, sentences=2)
     return results
 
 def handle_intent (query):
