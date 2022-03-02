@@ -1,5 +1,5 @@
 import requests
-from functions.online_ops import  get_latest_news, get_random_advice, get_trending_movies, get_weather_report
+from functions.online_ops import  get_latest_news, get_trending_movies, get_weather_report
 from decouple import config
 from datetime import datetime
 from random import choice
@@ -10,7 +10,7 @@ import time
 from playsound import playsound
 from speaker import speak,play_sound
 from listener import take_user_input
-from intents import googleintent, jokeintent, myipintent, synonymintent, whattimeintent, wikipediaintent, wordlookupintent, youtubeintent, emailintent
+from intents import adviceintent, googleintent, jokeintent, myipintent, synonymintent, whattimeintent, wikipediaintent, wordlookupintent, youtubeintent, emailintent
 
 
 USER=config("USER")
@@ -50,12 +50,8 @@ def start_dispatch(query):
             
 
         elif "advice" in query:
-            play_sound('assets/correct.wav')
-            speak(f"Here's some advice for you, sir")
-            advice = get_random_advice()
-            speak(advice)
-            speak("For your convenience, I am printing it on the screen sir.")
-            pprint(advice)
+            adviceintent.handle_intent()
+            
 
         elif "trending movies" in query:
             play_sound('assets/correct.wav')
