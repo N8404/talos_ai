@@ -8,7 +8,7 @@ def take_user_input():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print('T.A.L.O.S.> Listening....')
-        r.pause_threshold = 1
+        r.pause_threshold = .5
         audio = r.listen(source)
 
     try:

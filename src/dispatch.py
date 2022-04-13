@@ -11,7 +11,7 @@ from listener import take_user_input
 from intents import adviceintent, googleintent, jokeintent, myipintent, \
                     synonymintent, whattimeintent, wikipediaintent,\
                     wordlookupintent, youtubeintent, emailintent,\
-                    movieintent, newsintent, weatherintent
+                    movieintent, newsintent, weatherintent, timerintent
 from intents.myipintent import find_my_ip
 
 USER=config("USER")
@@ -25,7 +25,7 @@ def start_dispatch(query):
         
         if 'ip address' in query:
             myipintent.handle_intent()          
-        elif 'time' in query:
+        elif 'what time is it' in query:
             whattimeintent.handle_intent()
         elif 'wikipedia' in query:
             wikipediaintent.handle_intent(query)
@@ -73,6 +73,8 @@ def start_dispatch(query):
             synonymintent.handle_intent(query)
         elif 'what can you do' in query:
             speak (f"Some commands you can ask me are, synonym, flip a coin, wikipedia, youtube, google, what is your favorite color, what are you, weather, news, trending movies, send an email, advice, joke, definition, what time is it , ip adress,.. hope this was helpfull.")
+        elif 'set a timer' in query or 'create a timer' in query or 'make a timer' in query:
+            timerintent.create_timer()
         else:
             print (f"T.A.L.O.S.> I did not recognize any commands.")
             #play_sound('assets/error.wav')
